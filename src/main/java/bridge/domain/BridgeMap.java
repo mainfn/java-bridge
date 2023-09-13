@@ -24,4 +24,14 @@ public final class BridgeMap {
     return new BridgeMap(movePositions);
   }
 
+  public boolean isSameMovePositionAt(
+      final int index,
+      final MovePosition movePosition
+  ) {
+    return movePositions.get(index).equals(movePosition);
+  }
+
+  public boolean isEndOfBridge(final int index) {
+    return index == movePositions.size() - 1;
+  }
 }

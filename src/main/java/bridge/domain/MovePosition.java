@@ -24,4 +24,10 @@ public enum MovePosition {
     return value;
   }
 
+  public MovePosition getOpposite() {
+    if (UP.equals(this)) {
+      return DOWN;
+    }
+    return UP;
+  }
 }
