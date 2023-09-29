@@ -1,36 +1,38 @@
 package bridge.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+public final class GameResult {
 
-public final class MoveResults {
+  private final MoveRecords moveRecords;
+  private final GameStatus status;
+  private final int attemptCount;
 
-  private final List<MoveResult> patterns = new ArrayList<>();
-  private final int maxPatternsLength;
-  private int attemptCount = 1;
-
-  public MoveResults(final int maxPatternsLength) {
-    this.maxPatternsLength = maxPatternsLength;
+  private GameResult(
+      final MoveRecords moveRecords,
+      final int attemptCount,
+      final GameStatus status
+  ) {
+    this.moveRecords = moveRecords;
+    this.attemptCount = attemptCount;
+    this.status = status;
   }
 
-  // 1. 패턴 추가
-  public void add(final MoveResult moveResult) {
-    patterns.add(moveResult);
+  public static GameResult of(
+      final MoveRecords moveRecords,
+      final int attemptCount,
+      final GameStatus status
+  ) {
+    return new GameResult(
+        moveRecords,
+        attemptCount,
+        status);
   }
 
-  // 2. 재설정
-  public MoveResults cloneNext() {
-    final MoveResults moveResults = new MoveResults(maxPatternsLength);
-    moveResults.attemptCount++;
-
-    return moveResults;
-  }
-
-  // TODO:
   @Override
   public String toString() {
-    return "MoveResult{" +
-        "patterns=" + patterns +
-        '}';
+    return "최종 게임 결과\n"
+        + moveRecords.toString()
+        + "\n"
+        + "게임 성공 여부: " + status.getStatus() + "\n"
+        + "총 시도한 횟수: " + attemptCount;
   }
 }

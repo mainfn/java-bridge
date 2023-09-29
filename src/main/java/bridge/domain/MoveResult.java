@@ -37,4 +37,16 @@ public enum MoveResult {
   ) {
     return mp.get(position).get(isCorrectPosition);
   }
+
+  public MovePosition getPosition() {
+    return position;
+  }
+
+  public boolean hasCorrectPosition() {
+    return "O".equals(pattern);
+  }
+
+  public String getPattern() {
+    return pattern;
+  }
 }
